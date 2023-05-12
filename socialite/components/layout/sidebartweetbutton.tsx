@@ -1,14 +1,14 @@
-import React, { useCallback } from 'react'
-import { useRouter } from 'next/router'
+import React, { useCallback } from 'react';
+import { useRouter } from 'next/router';
 import { FaFeather } from 'react-icons/fa';
 import useLoginModal from '@/hooks/useloginmodel';
 
 const SidebarTweetButton = () => {
     const router = useRouter();
-    const loginModal = useLoginModal()
+    const loginModal = useLoginModal();
 
     const onHandleClick = useCallback(() => {
-        loginModal.onOpen()
+        loginModal.onOpen();
     }, [])
 
     return (
@@ -25,4 +25,4 @@ const SidebarTweetButton = () => {
     )
 }
 
-export default SidebarTweetButton
+export default SidebarTweetButton;
