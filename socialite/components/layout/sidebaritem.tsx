@@ -30,7 +30,7 @@ const SidebarItem: React.FC<SideBarProps> = ({
     
     const handleClick = useCallback(() => {
         if (onClick) {
-            return onClick()
+            return onClick();
         }
 
         if (auth && !currentUser) {
