@@ -6,6 +6,7 @@ const Followbar = () => {
   const { data: users = [] } = useUsers();
 
   if (users.length === 0) {
+    //when there is no users
     return null;
   }   
 
