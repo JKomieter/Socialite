@@ -3,7 +3,7 @@ import { text } from 'stream/consumers'
 
 interface ButtonProps {
     label: string,
-    secondary: boolean,
+    secondary?: boolean,
     fullWidth?: boolean,
     disabled?: boolean,
     large?: boolean,
