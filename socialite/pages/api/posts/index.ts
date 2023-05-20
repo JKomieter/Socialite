@@ -45,7 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         createdAt: 'desc'
                     },
                 });
-            } else if (userId === 'undefined') {
+            } else {
                 
                 // feteching all posts do display on postffed
                 posts = await prisma.post.findMany({

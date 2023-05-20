@@ -24,7 +24,7 @@ const PostView = () => {
     return (
         <>
             <Header label='Slite' showBackArrow/>
-            <PostItem  data={fetchedPost}/>
+            <PostItem data={fetchedPost}/>
             <Form 
                 postId={postId as string}
                 isComment
