@@ -3,6 +3,7 @@ import { IconType } from 'react-icons';
 import { useRouter } from 'next/router';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import useLoginModal from '@/hooks/useloginmodel';
+import { BsDot } from 'react-icons/bs';
 
 
 interface SideBarProps {
@@ -10,7 +11,8 @@ interface SideBarProps {
     href: string,
     icon: IconType,
     onClick?: () => void,
-    auth?: boolean
+    auth?: boolean,
+    alert?: boolean
 }
 
 
@@ -19,7 +21,8 @@ const SidebarItem: React.FC<SideBarProps> = ({
     href,
     icon: Icon,
     onClick,
-    auth
+    auth,
+    alert
 }) => {
 
     const router = useRouter();
@@ -42,7 +45,7 @@ const SidebarItem: React.FC<SideBarProps> = ({
 
 
     return (
-        <div onClick={handleClick}  className='flex flex-row items-center'>
+        <div onClick={handleClick} className='flex flex-row items-center'>
         <div className="relative
         rounded-full 
         h-14
@@ -56,6 +59,7 @@ const SidebarItem: React.FC<SideBarProps> = ({
         cursor-pointer 
         lg:hidden">
             <Icon size={28} color='white'/>
+            {alert ? <BsDot className='text-[#9B59B6] absolute -top-4 left-0' size={70} /> : null}
         </div>
         <div className="relative
         hidden 
@@ -72,6 +76,7 @@ const SidebarItem: React.FC<SideBarProps> = ({
             <p className='hidden lg:block text-[#fff] text-xl'>
                 {label}
             </p>
+            {alert ? <BsDot className='text-[#9B59B6] absolute -top-4 left-0' size={70} /> : null}
         </div>
     </div>
   )

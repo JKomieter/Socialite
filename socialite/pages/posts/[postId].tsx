@@ -4,7 +4,7 @@ import PostItem from "@/components/posts/postitem";
 import usePost from "@/hooks/usePost";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
-
+import CommentFeed from "@/components/posts/comment";
 
 const PostView = () => {
     const router = useRouter();
@@ -30,6 +30,7 @@ const PostView = () => {
                 isComment
                 placeholder='Slite your reply'
                 />
+            <CommentFeed comments={fetchedPost?.comment}/>
         </>
     )
 }

@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (req.method === 'GET') {
             const { userId } = req.query;
 
-            console.log(userId)
+            console.log( `The userId is ${userId}` );
             
             let posts;
             
@@ -45,8 +45,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         createdAt: 'desc'
                     },
                 });
-            } else {
-                console.log( `The userId is ${userId}` );
+            } else if (userId === 'undefined') {
+                
                 // feteching all posts do display on postffed
                 posts = await prisma.post.findMany({
                     include: {

@@ -21,7 +21,8 @@ const Sidebar = () => {
       label: "Notifications",
       href: "/notifications",
       icon: BsBellFill,
-      auth: true
+      auth: true,
+      alert: currentUser?.hasNotification
     },
     {
       label: "Profile",
@@ -38,7 +39,14 @@ const Sidebar = () => {
           <SidebarLogo/>
           {
             items.map((item) => (
-              <SidebarItem auth={item.auth} key={item.href} href={item.href} label={item.label} icon={item.icon}/>
+              <SidebarItem 
+              auth={item.auth} 
+              key={item.href} 
+              href={item.href} 
+              label={item.label} 
+              icon={item.icon}
+              alert={item.alert}
+              />
             ))
           }
           {currentUser && (

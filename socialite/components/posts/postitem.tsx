@@ -41,7 +41,9 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId}) => {
     const onLike = useCallback((event: any) => {
         event.stopPropagation();
 
-        if (!currentUser) return loginModal.onOpen();
+        if (!currentUser) {
+            return loginModal.onOpen();
+        }
 
         toggleLike()
     }, [loginModal, currentUser]);
@@ -102,7 +104,7 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId}) => {
                             hover:text-[#0720ff]
                         ">
                             <AiOutlineMessage size={20}/>
-                            <p>{data?.comments?.length || 0}</p>
+                            <p>{data?.comment?.length || 0}</p>
                         </div>
                         <div 
                         onClick={onLike}

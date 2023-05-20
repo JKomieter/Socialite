@@ -1,5 +1,5 @@
 import useCurrentUser from "@/hooks/useCurrentUser";
-import usePost from "@/hooks/usePosts";
+import usePosts from "@/hooks/usePosts";
 import useLoginModal from "@/hooks/useloginmodel";
 import useRegisterModal from "@/hooks/useregistermodal";
 import React, { useCallback, useState } from "react";
@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios"
 import Button from "./layout/button";
 import Avatar from "./avatar";
+import usePost from "@/hooks/usePost";
 
 interface FormProps {
     placeholder: string,
@@ -24,7 +25,8 @@ const Form: React.FC<FormProps> = ({
 
     const { data: currentUser } = useCurrentUser();
 
-    const { mutate: mutatePost } = usePost();
+    const { mutate: mutatePosts } = usePosts();
+    const { mutate: mutatePost } = usePost(postId as string)
 
     const [ body, setBody ] = useState("");
     const [ isloading, setisLoading ] = useState(false);
@@ -33,20 +35,26 @@ const Form: React.FC<FormProps> = ({
         try {
             setisLoading(true);
 
-            await axios.post('/api/posts', { body });
+            //check whether we are posting a comment or new feed
+            const url = isComment ? 
+                `/api/comment?postId=${postId}` : 
+                '/api/posts';
+
+            await axios.post(url, { body });
 
             toast.success("Slite created successfully!");
 
             setBody("");
             //load new ones whith existing ones
-            mutatePost();
+            mutatePosts();
+            mutatePost()
         } catch (error) {
             console.log(error);
             toast.error("Something went wrong.");
         } finally {
             setisLoading(false)
         }
-    }, [body, mutatePost])
+    }, [body, mutatePosts, mutatePost, isComment, postId])
 
     return (
         <div className="border-b-[1px] border-neutral-800 px-5 py-2">

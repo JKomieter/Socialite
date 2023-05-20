@@ -21,6 +21,7 @@ const useLike = ({ postId, userId } : {postId: string, userId?: string}) => {
     const hasLiked = useMemo(() => {
         // check if currentUser has already liked the post
         const list = fetchedPost?.likeIds || [];
+        
         return list.includes(currentUser?.id);
     }, [fetchedPost?.id, currentUser?.id]);
 
@@ -28,11 +29,13 @@ const useLike = ({ postId, userId } : {postId: string, userId?: string}) => {
         // if we are not logged in
         if (!currentUser) return loginModal.onOpen();
 
+        
         try {
             let request;
+            console.log(hasLiked);
 
             if (hasLiked) {
-                request = () => axios.delete('/api/like', { data: { postId} })
+                request = () => axios.delete('/api/like', { data: {postId: postId} });
             } else {
                 request = () => axios.post('/api/like', { postId });
             }
