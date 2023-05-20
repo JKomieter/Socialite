@@ -15,3 +15,6 @@ App includes:
 - Comments / Replies
 - Likes functionality
 - Vercel Deployment
+
+Cloning the Repository
+
